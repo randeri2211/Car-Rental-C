@@ -51,7 +51,8 @@ void password();
 void resetAvail();
 void showCarData();
 void welcome();
-
+void userMenu(int userID);
+void rentCar(int userID);
 
 
 struct car
@@ -557,10 +558,26 @@ void dispAvailCar()
 void existingCust()
 {
 
+	art();
 
-	int tempCust, hour, userID;
+	int userID;
+	cout << "\n\n\n\n";
+	cout << endl;
+
+	cout << "\n\n";
+	art();
+	cout << endl;
+
+	cout << "\n\t  |\t\t\t\tPlease enter user ID : ";
+	cin >> userID;
+
+	userMenu(userID);
+}
+
+void rentCar(int userID)
+{
+	int hour;
 	char carSelect[10];
-	tempCust = custCount() - 1;
 	ofstream log;
 	log.open("Log.txt", fstream::app);
 	ofstream ofs;
@@ -572,11 +589,6 @@ void existingCust()
 	art();
 	cout << endl;
 
-	cout << "\n\t  |\t\t\t\tPlease enter user ID : ";
-	cin >> userID;
-	if (userID == 0){
-		menu();
-	}
 	for (int i = 0; i < custCount(); i++)
 	{
 		if (userID == cust[i].id)
@@ -639,6 +651,7 @@ void existingCust()
 
 	remove("available.txt");
 	rename("temp.txt", "available.txt");
+	availCar();
 	cout << "\t  |\t\t\t\t\tHours of rent : ";
 	cin >> hour;
 	if (hour == 0) {
@@ -668,8 +681,9 @@ void existingCust()
 
 	Sleep(5000);
 	system("cls");
-	menu();
+	userMenu(userID);
 }
+
 
 void newCustData()
 {
@@ -678,12 +692,9 @@ void newCustData()
 	cout << endl;
 
 	availCar();
-	ofstream ofs, log;
+	ofstream ofs;
 	ofs.open("Customer.txt", fstream::app);
-	log.open("Log.txt", fstream::app);
 	ofs << endl;
-	ofstream availTemp;
-	availTemp.open("availtemp.txt");
 	cout << "\n\n\n\n";
 	cout << endl;
 
@@ -700,20 +711,17 @@ void newCustData()
 	cin >> ws;
 	cin.getline(cust[custCount()].name, 100);
 	ofs << cust[custCount()].name << ";";
-	log << "\nNAME: " << cust[custCount()].name;
 
 	cout << "\t  |\t\t\t\t\t  Phone Number : ";
 	cin.getline(cust[custCount()].phone, 15);
 	ofs << cust[custCount()].phone;
 	ofs << ";";
-	log << "\nPHONE: " << cust[custCount()].phone;
 
 
 	cout << "\t  |\t\t\t\t\t  IC : ";
 	cin.getline(cust[custCount()].ic, 15);
 	ofs << cust[custCount()].ic;
 	ofs << ";";
-	log << "\nIC: " << cust[custCount()].ic;
 
 	cout << "\t  |\t\t\t\t\t  Address : ";
 	cin.getline(cust[custCount()].address, 1500);
@@ -721,99 +729,9 @@ void newCustData()
 
 	ofs.close();
 
-
+	customerData();
 	system("cls");
-
-	int tempCust, hour;
-	char carSelect[10];
-	tempCust = custCount() - 1;
-
-	cout << "\n\n\n\n";
-	art();
-	cout << endl;
-
-	cout << "\n\t  |\t\t\tWELCOME ";
-	cout << cust[tempCust].name;
-	cout << "\t  |\tID ";
-	cout << cust[tempCust].id;
-	cout << "\n\n";
-
-	dispAvailCar();
-
-	cout << "\n\n\t  |\tPlease select car";
-	cout << "\n\t  |\tPlate Number : ";
-	cin >> ws;
-	cin.getline(carSelect, 10);
-
-	int x = countAvail();
-
-	for (int i = 0; i < countAvail(); i++)
-	{
-		if (strcmp(carSelect, avail[i].plate_num) != 0)
-		{
-			availTemp << avail[i].plate_num;
-			availTemp << " ";
-			availTemp << avail[i].brand;
-			availTemp << " ";
-			availTemp << avail[i].model;
-			availTemp << " ";
-			availTemp << avail[i].capacity;
-			availTemp << " ";
-			availTemp << avail[i].colour;
-			availTemp << " ";
-			availTemp << avail[i].rate_per_hour;
-			availTemp << " ";
-			availTemp << avail[i].rate_per_half;
-			availTemp << " ";
-			availTemp << avail[i].rate_per_day;
-			availTemp << " ";
-			availTemp << avail[i].transmission;
-			if (i != countAvail())
-			{
-				availTemp << endl;
-			}
-
-
-		}
-	}
-
-	ofs.close();
-
-	remove("available.txt");
-	rename("availtemp.txt", "available.txt");
-
-	cout << "\t  |\tHours of rent : ";
-	cin >> hour;
-	int j;
-	for (int i = 0; i < carCount(); i++)
-	{
-		if (strcmp(carSelect, rent[i].plate_num) == 0)
-		{
-			j = i;
-			rate(hour, j);
-			log << "\nCAR: " << rent[i].plate_num;
-			log << "\nBRAND: " << rent[i].brand;
-			log << "\nMODEL: " << rent[i].model;
-			log << "\nHOUR: " << hour;
-			log << "\nPAYMENT: " << rate(hour, j);
-
-		}
-	}
-
-
-
-	cout << "\n\t  |\tPrice for " << hour << " hours of rent : RM ";
-	cout << rate(hour, j);
-
-	log << "\nDATE: " << currentDateTime();
-	log << "\n==========================================================";
-	log.close();
-	availTemp.close();
-	availCar();
-
-	Sleep(5000);
-	system("cls");
-	menu();
+	userMenu(cust[custCount()-1].id);
 }
 
 void newCarData()
@@ -889,7 +807,23 @@ void availCar()
 	ifstream ifs;
 	ifs.open("available.txt");
 	int carNum = 0;
-
+	for (int i = 0; i < countAvail(); i++) {
+		ifs.getline(avail[carNum].plate_num, 10, ' ');
+		ifs.getline(avail[carNum].brand, 20, ' ');
+		ifs.getline(avail[carNum].model, 20, ' ');
+		ifs >> avail[carNum].capacity;
+		ifs.ignore();
+		ifs.getline(avail[carNum].colour, 20, ' ');
+		ifs >> avail[carNum].rate_per_hour;
+		ifs.ignore();
+		ifs >> avail[carNum].rate_per_half;
+		ifs.ignore();
+		ifs >> avail[carNum].rate_per_day;
+		ifs.ignore();
+		ifs.getline(avail[carNum].transmission, 6);
+		carNum++;
+		ifs >> ws;
+	}
 	while (!ifs.eof())
 	{
 		ifs.getline(avail[carNum].plate_num, 10, ' ');
@@ -924,7 +858,7 @@ void resetAvail()
 		ofs << " ";
 		ofs << rent[i].brand;
 		ofs << " ";
-		ofs << rent[i].model;
+		ofs << rent[i].model;	
 		ofs << " ";
 		ofs << rent[i].capacity;
 		ofs << " ";
@@ -1162,6 +1096,43 @@ void user()
 
 
 
+}
+
+void userMenu(int userID)
+{
+	int x;
+	art();
+
+	for (int i = 0; i <= custCount(); i++)
+	{
+		if (userID == cust[i].id)
+		{
+			cout << "\n\t  |\t\t\t\t\tWELCOME ";
+			cout << cust[i].name;
+			cout << "\t  |\tID ";
+			cout << cust[i].id;
+			cout << "\n\n";
+		}
+	}
+
+
+	cout << endl;
+	cout << "\n\t  |\t\t\t\t\t\t\t  1. RENT CAR";
+	cout << "\n\t  |\t\t\t\t\t\t\t  2. ";
+	cout << "\n\t  |\t\t\t\t\t\t\t  3. ";
+	cout << "\n\t  |\t\t\t\t\t\t\t  4. EXIT" << endl << "\n";
+	cout << "\n\t  |\t\t\t\t\t\t\tINPUT :";
+	cin >> x;
+
+	system("cls");
+
+
+	if (x == 1) {
+		rentCar(userID);
+	}
+	if (x == 4) {
+		menu();
+	}
 }
 
 void menu()

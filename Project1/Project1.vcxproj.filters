@@ -28,5 +28,6 @@
     <Text Include="exit art.txt" />
     <Text Include="Log.txt" />
     <Text Include="UserPass.txt" />
+    <Text Include="temp.txt" />
   </ItemGroup>
 </Project>
