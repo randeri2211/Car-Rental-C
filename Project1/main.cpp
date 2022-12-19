@@ -1149,7 +1149,8 @@ void menu()
 	cout << "\n\t  |\t\t\t\t\t\t\t  1. ADMIN";
 	cout << "\n\t  |\t\t\t\t\t\t\t  2. USER";
 	cout << "\n\t  |\t\t\t\t\t\t\t  3. T%C";
-	cout << "\n\t  |\t\t\t\t\t\t\t  4. EXIT" << endl << "\n";
+	cout << "\n\t  |\t\t\t\t\t\t\t  4. VIEW LIST CAR ";
+	cout << "\n\t  |\t\t\t\t\t\t\t  5. EXIT" << endl << "\n";
 	cout << "\n\t  |\t\t\t\t\t\t\tINPUT :";
 	cin >> x;
 
@@ -1172,11 +1173,15 @@ void menu()
 		tNc();
 		_getch();
 	}
-
-	if (x == 5)
+	if (x == 4)
+	{
+		dispAvailCar();
+	}
+	
+	if (x == 6)
 		time();
 
-	else if (x == 4)
+	else if (x == 5)
 	{
 		cout << "\n\n\n\n";
 		exitArt();
