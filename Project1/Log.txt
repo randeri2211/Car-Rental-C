@@ -39,3 +39,26 @@ HOUR: 12
 PAYMENT: 70
 DATE: 18/12/2022 TIME: 15:09:24
 ==========================================================
+NAME: efrat
+PHONE: 0543010566
+IC: 208714287
+NAME: gal
+PHONE: 0523424
+IC: fsdf
+CAR: JIM111
+BRAND: PROTON
+MODEL: EXORA
+HOUR: 5
+PAYMENT: 50
+DATE: 18/12/2022 TIME: 17:39:31
+==========================================================
+NAME: gal
+PHONE: 0523424
+IC: fsdf
+CAR: CL03
+BRAND: KIA
+MODEL: K50
+HOUR: 5
+PAYMENT: 1500
+DATE: 18/12/2022 TIME: 17:39:58
+==========================================================

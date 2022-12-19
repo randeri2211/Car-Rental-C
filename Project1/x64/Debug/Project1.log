@@ -1,19 +1,19 @@
 ﻿  main.cpp
-C:\Users\galde\OneDrive\שולחן העבודה\GitGood\project\Project1\main.cpp(179,4): warning C4065: switch statement contains 'default' but no 'case' labels
-C:\Users\galde\OneDrive\שולחן העבודה\GitGood\project\Project1\main.cpp(249,6): warning C4101: 'row': unreferenced local variable
-C:\Users\galde\OneDrive\שולחן העבודה\GitGood\project\Project1\main.cpp(249,19): warning C4101: 'c': unreferenced local variable
-C:\Users\galde\OneDrive\שולחן העבודה\GitGood\project\Project1\main.cpp(249,11): warning C4101: 'col': unreferenced local variable
-C:\Users\galde\OneDrive\שולחן העבודה\GitGood\project\Project1\main.cpp(266,6): warning C4101: 'row': unreferenced local variable
-C:\Users\galde\OneDrive\שולחן העבודה\GitGood\project\Project1\main.cpp(266,19): warning C4101: 'c': unreferenced local variable
-C:\Users\galde\OneDrive\שולחן העבודה\GitGood\project\Project1\main.cpp(266,11): warning C4101: 'col': unreferenced local variable
-C:\Users\galde\OneDrive\שולחן העבודה\GitGood\project\Project1\main.cpp(283,6): warning C4101: 'row': unreferenced local variable
-C:\Users\galde\OneDrive\שולחן העבודה\GitGood\project\Project1\main.cpp(283,19): warning C4101: 'c': unreferenced local variable
-C:\Users\galde\OneDrive\שולחן העבודה\GitGood\project\Project1\main.cpp(283,11): warning C4101: 'col': unreferenced local variable
-C:\Users\galde\OneDrive\שולחן העבודה\GitGood\project\Project1\main.cpp(301,6): warning C4101: 'row': unreferenced local variable
-C:\Users\galde\OneDrive\שולחן העבודה\GitGood\project\Project1\main.cpp(301,19): warning C4101: 'c': unreferenced local variable
-C:\Users\galde\OneDrive\שולחן העבודה\GitGood\project\Project1\main.cpp(301,11): warning C4101: 'col': unreferenced local variable
-C:\Users\galde\OneDrive\שולחן העבודה\GitGood\project\Project1\main.cpp(438,21): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\galde\OneDrive\שולחן העבודה\GitGood\project\Project1\main.cpp(439,21): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\galde\OneDrive\שולחן העבודה\GitGood\project\Project1\main.cpp(440,19): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\galde\OneDrive\שולחן העבודה\GitGood\project\Project1\main.cpp(917,4): warning C4065: switch statement contains 'default' but no 'case' labels
-  Project1.vcxproj -> C:\Users\galde\OneDrive\שולחן העבודה\GitGood\project\x64\Debug\Project1.exe
+C:\Users\efi\Desktop\Software Engineering\2nd year\git\car\Project1\main.cpp(179,4): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\efi\Desktop\Software Engineering\2nd year\git\car\Project1\main.cpp(249,6): warning C4101: 'row': unreferenced local variable
+C:\Users\efi\Desktop\Software Engineering\2nd year\git\car\Project1\main.cpp(249,19): warning C4101: 'c': unreferenced local variable
+C:\Users\efi\Desktop\Software Engineering\2nd year\git\car\Project1\main.cpp(249,11): warning C4101: 'col': unreferenced local variable
+C:\Users\efi\Desktop\Software Engineering\2nd year\git\car\Project1\main.cpp(266,6): warning C4101: 'row': unreferenced local variable
+C:\Users\efi\Desktop\Software Engineering\2nd year\git\car\Project1\main.cpp(266,19): warning C4101: 'c': unreferenced local variable
+C:\Users\efi\Desktop\Software Engineering\2nd year\git\car\Project1\main.cpp(266,11): warning C4101: 'col': unreferenced local variable
+C:\Users\efi\Desktop\Software Engineering\2nd year\git\car\Project1\main.cpp(283,6): warning C4101: 'row': unreferenced local variable
+C:\Users\efi\Desktop\Software Engineering\2nd year\git\car\Project1\main.cpp(283,19): warning C4101: 'c': unreferenced local variable
+C:\Users\efi\Desktop\Software Engineering\2nd year\git\car\Project1\main.cpp(283,11): warning C4101: 'col': unreferenced local variable
+C:\Users\efi\Desktop\Software Engineering\2nd year\git\car\Project1\main.cpp(301,6): warning C4101: 'row': unreferenced local variable
+C:\Users\efi\Desktop\Software Engineering\2nd year\git\car\Project1\main.cpp(301,19): warning C4101: 'c': unreferenced local variable
+C:\Users\efi\Desktop\Software Engineering\2nd year\git\car\Project1\main.cpp(301,11): warning C4101: 'col': unreferenced local variable
+C:\Users\efi\Desktop\Software Engineering\2nd year\git\car\Project1\main.cpp(438,21): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\efi\Desktop\Software Engineering\2nd year\git\car\Project1\main.cpp(439,21): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\efi\Desktop\Software Engineering\2nd year\git\car\Project1\main.cpp(440,19): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\efi\Desktop\Software Engineering\2nd year\git\car\Project1\main.cpp(917,4): warning C4065: switch statement contains 'default' but no 'case' labels
+  Project1.vcxproj -> C:\Users\efi\Desktop\Software Engineering\2nd year\git\car\x64\Debug\Project1.exe

@@ -1118,7 +1118,7 @@ void userMenu(int userID)
 
 	cout << endl;
 	cout << "\n\t  |\t\t\t\t\t\t\t  1. RENT CAR";
-	cout << "\n\t  |\t\t\t\t\t\t\t  2. ";
+	cout << "\n\t  |\t\t\t\t\t\t\t  2. ADD CAR";
 	cout << "\n\t  |\t\t\t\t\t\t\t  3. ";
 	cout << "\n\t  |\t\t\t\t\t\t\t  4. EXIT" << endl << "\n";
 	cout << "\n\t  |\t\t\t\t\t\t\tINPUT :";
@@ -1129,6 +1129,10 @@ void userMenu(int userID)
 
 	if (x == 1) {
 		rentCar(userID);
+	}
+	if (x == 2)
+	{
+		newCarData();
 	}
 	if (x == 4) {
 		menu();
