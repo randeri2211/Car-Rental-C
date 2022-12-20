@@ -53,7 +53,7 @@ void showCarData();
 void welcome();
 void userMenu(int userID);
 void rentCar(int userID);
-
+void history(int userID);
 
 struct car
 {
@@ -246,7 +246,7 @@ void load()
 	Boarder();
 
 	int timer = 5 + rand() % 20;
-	int row, col, r, c, q;
+	int r, q;
 	gotoxy(65, 34);
 	cout << "BOOTING UP...";
 	gotoxy(60, 36);
@@ -263,7 +263,7 @@ void load_CHECK()
 {
 	Boarder();
 	int timer = rand() % 5 + 1;
-	int row, col, r, c, q;
+	int r, q;
 	gotoxy(65, 34);
 	printf("LOG IN...");
 	gotoxy(60, 36);
@@ -280,7 +280,7 @@ void load_UPDATE()
 {
 	Boarder();
 
-	int row, col, r, c, q;
+	int r, c, q;
 	int timer = rand() % 25 + 1;
 	gotoxy(65, 34);
 	printf("UPDATING DATABASE...");
@@ -298,7 +298,7 @@ void load_EXIT()
 {
 	Boarder();
 
-	int row, col, r, c, q;
+	int r, q;
 	int timer = rand() % 5 + 1;
 	gotoxy(65, 34);
 	printf("LOGGING OFF...");
@@ -588,19 +588,19 @@ void rentCar(int userID)
 	cout << "\n\n";
 	art();
 	cout << endl;
-
 	for (int i = 0; i < custCount(); i++)
 	{
 		if (userID == cust[i].id)
 		{
 			cout << "\n\t  |\t\t\t\t\tWELCOME ";
 			cout << cust[i].name;
-			log << "\nNAME: " << cust[i].name;
+			log << userID << ";";
+			log << cust[i].name << ";";
 			cout << "\t  |\tID ";
 			cout << cust[i].id;
 			cout << "\n\n";
-			log << "\nPHONE: " << cust[i].phone;
-			log << "\nIC: " << cust[i].ic;
+			log << cust[i].phone << ";";
+			log << cust[i].ic << ";";
 		}
 	}
 
@@ -664,19 +664,19 @@ void rentCar(int userID)
 		{
 			j = i;
 
-			log << "\nCAR: " << rent[i].plate_num;
-			log << "\nBRAND: " << rent[i].brand;
-			log << "\nMODEL: " << rent[i].model;
-			log << "\nHOUR: " << hour;
-			log << "\nPAYMENT: " << rate(hour, j);
+			log << rent[i].plate_num << ";";
+			log << rent[i].brand << ";";
+			log << rent[i].model << ";";
+			log << hour << ";";
+			log << rate(hour, j) << ";";
 		}
 	}
 
 	cout << "\t  |\t\t\t\tPrice for " << hour << " hours of rent : RM ";
 	cout << rate(hour, j);
 
-	log << "\nDATE: " << currentDateTime();
-	log << "\n==========================================================";
+	log << currentDateTime() << ";";
+	log << "\n";
 	log.close();
 
 	Sleep(5000);
@@ -1118,7 +1118,7 @@ void userMenu(int userID)
 
 	cout << endl;
 	cout << "\n\t  |\t\t\t\t\t\t\t  1. RENT CAR";
-	cout << "\n\t  |\t\t\t\t\t\t\t  2. ";
+	cout << "\n\t  |\t\t\t\t\t\t\t  2. CAR HISTORY";
 	cout << "\n\t  |\t\t\t\t\t\t\t  3. ";
 	cout << "\n\t  |\t\t\t\t\t\t\t  4. EXIT" << endl << "\n";
 	cout << "\n\t  |\t\t\t\t\t\t\tINPUT :";
@@ -1130,7 +1130,10 @@ void userMenu(int userID)
 	if (x == 1) {
 		rentCar(userID);
 	}
-	if (x == 4) {
+	else if (x == 2) {
+		history(userID);
+	}
+	else if (x == 4) {
 		menu();
 	}
 }
@@ -1186,10 +1189,6 @@ void menu()
 		menu();
 	}
 
-
-
-
-
 }
 
 void delCar()
@@ -1235,8 +1234,6 @@ void delCar()
 			{
 				ofs << endl;
 			}
-
-
 		}
 	}
 
@@ -1271,6 +1268,34 @@ void tNc()
 	menu();
 }
 
+void history(int userID) {
+	ifstream ifs;
+	ifs.open("Log.txt");
+	art();
+	cout << endl;
+	cout << "\t  |  ID\t\tName\tPhone\t\tIC\tPlate Number\tBrand\tModel\tHours Rented\tHourly Rate\tDate" << endl;
+	cout << "\t  |  =======================================================================================================================" << endl;
+	while (!ifs.eof()) {
+		char id[10],name[100],phone[15],IC[15],plate[10],brand[20],model[20],hours[10],rate[10],date[30];
+		
+		ifs.getline(id,10,';');
+		ifs.getline(name, 100, ';');
+		ifs.getline(phone, 15, ';');
+		ifs.getline(IC, 15, ';');
+		ifs.getline(plate, 10, ';');
+		ifs.getline(brand, 20, ';');
+		ifs.getline(model, 20, ';');
+		ifs.getline(hours, 10, ';');
+		ifs.getline(rate, 10, ';');
+		ifs.getline(date, 30, ';');
+		if (atoi(id) == userID) {
+			cout << "\t  |   " << id << "\t" << name << "\t" << phone << "\t\t" << IC << "\t  " << plate << "\t" << brand << "\t" << model << "\t    " << hours << "\t\t   " << rate << "\t  " << date << endl;
+		}
+	}
+	ifs.close();
+	_getch();
+}
+
 int main()
 {
 
@@ -1282,6 +1307,7 @@ int main()
 	availCar();
 	customerData();
 	carData();
+	history(1004);
 	menu();
 
 
