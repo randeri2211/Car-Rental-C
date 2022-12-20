@@ -1118,7 +1118,11 @@ void userMenu(int userID)
 
 	cout << endl;
 	cout << "\n\t  |\t\t\t\t\t\t\t  1. RENT CAR";
+<<<<<<< HEAD
 	cout << "\n\t  |\t\t\t\t\t\t\t  2. CAR HISTORY";
+=======
+	cout << "\n\t  |\t\t\t\t\t\t\t  2. ADD CAR";
+>>>>>>> e9b6bd0f55fae1ac100c94e562ed65b746cdc36e
 	cout << "\n\t  |\t\t\t\t\t\t\t  3. ";
 	cout << "\n\t  |\t\t\t\t\t\t\t  4. EXIT" << endl << "\n";
 	cout << "\n\t  |\t\t\t\t\t\t\tINPUT :";
@@ -1130,10 +1134,18 @@ void userMenu(int userID)
 	if (x == 1) {
 		rentCar(userID);
 	}
+<<<<<<< HEAD
 	else if (x == 2) {
 		history(userID);
 	}
 	else if (x == 4) {
+=======
+	if (x == 2)
+	{
+		newCarData();
+	}
+	if (x == 4) {
+>>>>>>> e9b6bd0f55fae1ac100c94e562ed65b746cdc36e
 		menu();
 	}
 }
@@ -1148,7 +1160,8 @@ void menu()
 	cout << "\n\t  |\t\t\t\t\t\t\t  1. ADMIN";
 	cout << "\n\t  |\t\t\t\t\t\t\t  2. USER";
 	cout << "\n\t  |\t\t\t\t\t\t\t  3. T%C";
-	cout << "\n\t  |\t\t\t\t\t\t\t  4. EXIT" << endl << "\n";
+	cout << "\n\t  |\t\t\t\t\t\t\t  4. VIEW LIST CAR ";
+	cout << "\n\t  |\t\t\t\t\t\t\t  5. EXIT" << endl << "\n";
 	cout << "\n\t  |\t\t\t\t\t\t\tINPUT :";
 	cin >> x;
 
@@ -1171,11 +1184,15 @@ void menu()
 		tNc();
 		_getch();
 	}
-
-	if (x == 5)
+	if (x == 4)
+	{
+		dispAvailCar();
+	}
+	
+	if (x == 6)
 		time();
 
-	else if (x == 4)
+	else if (x == 5)
 	{
 		cout << "\n\n\n\n";
 		exitArt();
