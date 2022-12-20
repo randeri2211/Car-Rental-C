@@ -589,29 +589,30 @@ void rentCar(int userID)
 	ofs.open("temp.txt");
 	cout << "\n\n\n\n";
 	cout << endl;
+
 	cout << "\n\n";
 	art();
 	cout << endl;
-
 	for (int i = 0; i < custCount(); i++)
 	{
 		if (userID == cust[i].id)
 		{
 			cout << "\n\t  |\t\t\t\t\tWELCOME ";
 			cout << cust[i].name;
-			log << "\nNAME: " << cust[i].name;
+			log << userID << ";";
+			log << cust[i].name << ";";
 			cout << "\t  |\tID ";
 			cout << cust[i].id;
 			cout << "\n\n";
-			log << "\nPHONE: " << cust[i].phone;
-			log << "\nIC: " << cust[i].ic;
+			log << cust[i].phone << ";";
+			log << cust[i].ic << ";";
 		}
 	}
 
 
 	dispAvailCar();
 
-	cout << "\n\n\t  |\t\t\t\t\tPlease select car :";
+	cout << "\n\n\t  |\t\t\t\t\tPlease select car";
 	cout << "\n\t  |\t\t\t\t\tPlate Number : ";
 	cin >> ws;
 	cin.getline(carSelect, 10);
@@ -668,26 +669,25 @@ void rentCar(int userID)
 		{
 			j = i;
 
-			log << "\nCAR: " << rent[i].plate_num;
-			log << "\nBRAND: " << rent[i].brand;
-			log << "\nMODEL: " << rent[i].model;
-			log << "\nHOUR: " << hour;
-			log << "\nPAYMENT: " << rate(hour, j);
+			log << rent[i].plate_num << ";";
+			log << rent[i].brand << ";";
+			log << rent[i].model << ";";
+			log << hour << ";";
+			log << rate(hour, j) << ";";
 		}
 	}
 
 	cout << "\t  |\t\t\t\tPrice for " << hour << " hours of rent : RM ";
 	cout << rate(hour, j);
 
-	log << "\nDATE: " << currentDateTime();
-	log << "\n==========================================================";
+	log << currentDateTime() << ";";
+	log << "\n";
 	log.close();
 
 	Sleep(5000);
 	system("cls");
 	userMenu(userID);
 }
-
 
 void newCustData()
 {
