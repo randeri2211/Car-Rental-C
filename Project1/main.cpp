@@ -53,6 +53,7 @@ void showCarData();
 void welcome();
 void userMenu(int userID);
 void rentCar(int userID);
+void star(int userID);
 
 
 struct car
@@ -66,6 +67,9 @@ struct car
 	float rate_per_half;
 	float rate_per_day;
 	char transmission[6];
+	int starNum;
+	float star;
+	 
 };
 
 struct customer
@@ -327,7 +331,7 @@ void Boarder()
 {
 	int i;
 	system("cls");
-	for (i = 10;i < 140;i++)
+	for (i = 10;i < 145;i++)
 	{
 		GotoXY(i, 10);
 		cout << "=";
@@ -338,7 +342,7 @@ void Boarder()
 	{
 		GotoXY(10, i);
 		cout << "|";
-		GotoXY(140, i);
+		GotoXY(145, i);
 		cout << "|";
 	}
 }
@@ -533,20 +537,20 @@ int countAvail()
 
 void displayCar()
 {
-	cout << "\t  |  Plate Number\tBrand\t Model\tCapacity    Colour   Rate Per Hour   Rate Per 12 Hour   Rate Per 24 Hour   Transmission" << endl;
-	cout << "\t  |  =======================================================================================================================" << endl;
+	cout << "\t  |  Plate Number\tBrand\t Model\tCapacity    Colour   Rate Per Hour   Rate Per 12 Hour   Rate Per 24 Hour   Transmission    Star" << endl;
+	cout << "\t  |  ====================================================================================================================================" << endl;
 	for (int i = 0; i < carCount(); i++)
 	{
 		cout << "\t  |   " << rent[i].plate_num << "\t\t" << rent[i].brand << "\t " << rent[i].model << "\t   " << rent[i].capacity << "\t     "
 			<< rent[i].colour << "\t  " << rent[i].rate_per_hour << "\t\t    " << rent[i].rate_per_half << "\t\t    " << rent[i].rate_per_day
-			<< "\t\t       " << rent[i].transmission << endl;
+			<< "\t\t       " << rent[i].transmission  <<"\t    " << rent[i].star << endl;
 	}
 }
 
 void dispAvailCar()
 {
-	cout << "\t  |  Plate Number\tBrand\t Model\tCapacity    Colour   Rate Per Hour   Rate Per 12 Hour   Rate Per 24 Hour   Transmission" << endl;
-	cout << "\t  |  =======================================================================================================================" << endl;
+	cout << "\t  |  Plate Number\tBrand\t Model\tCapacity    Colour   Rate Per Hour   Rate Per 12 Hour   Rate Per 24 Hour   Transmission   " << endl;
+	cout << "\t  |  ===================================================================================================================================" << endl;
 	for (int i = 0; i < countAvail(); i++)
 	{
 		cout << "\t  |   " << avail[i].plate_num << "\t\t" << avail[i].brand << "\t " << avail[i].model << "\t   " << avail[i].capacity << "\t     "
@@ -584,7 +588,6 @@ void rentCar(int userID)
 	ofs.open("temp.txt");
 	cout << "\n\n\n\n";
 	cout << endl;
-
 	cout << "\n\n";
 	art();
 	cout << endl;
@@ -607,7 +610,7 @@ void rentCar(int userID)
 
 	dispAvailCar();
 
-	cout << "\n\n\t  |\t\t\t\t\tPlease select car";
+	cout << "\n\n\t  |\t\t\t\t\tPlease select car :";
 	cout << "\n\t  |\t\t\t\t\tPlate Number : ";
 	cin >> ws;
 	cin.getline(carSelect, 10);
@@ -956,8 +959,8 @@ void showCarData()
 	art();
 	cout << endl;
 
-	cout << "\t  |  Plate Number\tBrand\t Model\tCapacity    Colour   Rate Per Hour   Rate Per 12 Hour   Rate Per 24 Hour   Transmission" << endl;
-	cout << "\t  |  =======================================================================================================================" << endl;
+	cout << "\t  |  Plate Number\tBrand\t Model\tCapacity    Colour   Rate Per Hour   Rate Per 12 Hour   Rate Per 24 Hour   Transmission   " << endl;
+	cout << "\t  |  ===================================================================================================================================" << endl;
 	for (int i = 0; i < carCount(); i++)
 	{
 		cout << "\t  |  " << rent[i].plate_num << "\t\t" << rent[i].brand << "\t " << rent[i].model << "\t   " << rent[i].capacity << "\t     "
@@ -1004,7 +1007,7 @@ void carData()
 		ifs.ignore();
 		ifs >> rent[carNum].rate_per_day;
 		ifs.ignore();
-		ifs.getline(rent[carNum].transmission, 6);
+		ifs.getline(rent[carNum].transmission,6);
 		carNum++;
 		ifs >> ws;
 	}
@@ -1119,7 +1122,7 @@ void userMenu(int userID)
 	cout << endl;
 	cout << "\n\t  |\t\t\t\t\t\t\t  1. RENT CAR";
 	cout << "\n\t  |\t\t\t\t\t\t\t  2. ";
-	cout << "\n\t  |\t\t\t\t\t\t\t  3. ";
+	cout << "\n\t  |\t\t\t\t\t\t\t  3. STAR REVIEW";
 	cout << "\n\t  |\t\t\t\t\t\t\t  4. EXIT" << endl << "\n";
 	cout << "\n\t  |\t\t\t\t\t\t\tINPUT :";
 	cin >> x;
@@ -1129,6 +1132,9 @@ void userMenu(int userID)
 
 	if (x == 1) {
 		rentCar(userID);
+	}
+	if (x == 3) {
+		star(userID);
 	}
 	if (x == 4) {
 		menu();
@@ -1169,11 +1175,12 @@ void menu()
 		tNc();
 		_getch();
 	}
+
 	if (x == 4)
 	{
 		dispAvailCar();
 	}
-	
+
 	if (x == 6)
 		time();
 
@@ -1274,6 +1281,108 @@ void tNc()
 
 	_getch();
 	menu();
+}
+
+void star(int userID) {
+	char carSelect[10];
+	ofstream ofs;
+	ofs.open("temp.txt");
+	cout << "\n\n\n\n";
+	cout << endl;
+
+	cout << "\n\n";
+	art();
+	cout << endl;
+
+
+
+	displayCar();
+	int st;
+	cout << "\n\n\t  |\t\t\t\t\tPlease select car";
+	cout << "\n\n\t  |\t\t\t\t\tPlate Number  :  ";
+	cin >> ws;
+	cin.getline(carSelect, 10);
+	cout << "\n\n\t  |\t\t\t\t\tPlease select star number 1-5:";
+	cin >> st;
+	int x = countAvail();
+	bool foundCar = false;
+	for (int i = 0; i < carCount(); i++)
+	{
+		if (strcmp(carSelect, avail[i].plate_num) != 0)
+		{
+			ofs << rent[i].plate_num;
+			ofs << " ";
+			ofs << rent[i].brand;
+			ofs << " ";
+			ofs << rent[i].model;
+			ofs << " ";
+			ofs << rent[i].capacity;
+			ofs << " ";
+			ofs << rent[i].colour;
+			ofs << " ";
+			ofs << rent[i].rate_per_hour;
+			ofs << " ";
+			ofs << rent[i].rate_per_half;
+			ofs << " ";
+			ofs << rent[i].rate_per_day;
+			ofs << " ";
+			ofs << rent[i].transmission;
+			ofs << " ";
+			ofs << rent[i].starNum;
+			ofs << " ";
+			ofs << rent[i].star;
+			if (i != countAvail())
+			{
+				ofs << endl;
+			}
+		}
+		if (strcmp(carSelect, avail[i].plate_num) == 0) {
+			ofs << rent[i].plate_num;
+			ofs << " ";
+			ofs << rent[i].brand;
+			ofs << " ";
+			ofs << rent[i].model;
+			ofs << " ";
+			ofs << rent[i].capacity;
+			ofs << " ";
+			ofs << rent[i].colour;
+			ofs << " ";
+			ofs << rent[i].rate_per_hour;
+			ofs << " ";
+			ofs << rent[i].rate_per_half;
+			ofs << " ";
+			ofs << rent[i].rate_per_day;
+			ofs << " ";
+			ofs << rent[i].transmission;
+			ofs << " ";
+			rent[i].starNum++;
+			ofs << rent[i].starNum;
+			ofs << " ";
+			float newStar = ((rent[i].star * (rent[i].starNum - 1)) + st) / rent[i].starNum;
+			rent[i].star = newStar;
+			ofs << rent[i].star;
+			if (i != countAvail())
+			{
+				ofs << endl;
+			}
+		}
+		else {
+			foundCar = true;
+		}
+	}
+	if (!foundCar) {
+		menu();
+	}
+
+	ofs.close();
+
+	remove("car rental.txt");
+	rename("temp.txt", "car rental.txt");
+	
+	Sleep(5000);
+	
+	system("cls");
+	userMenu(userID);
 }
 
 int main()
