@@ -54,6 +54,7 @@ void welcome();
 void userMenu(int userID);
 void rentCar(int userID);
 void star(int userID);
+void history(int userID);
 
 
 struct car
@@ -1123,7 +1124,8 @@ void userMenu(int userID)
 	cout << "\n\t  |\t\t\t\t\t\t\t  1. RENT CAR";
 	cout << "\n\t  |\t\t\t\t\t\t\t  2. ADD CAR";
 	cout << "\n\t  |\t\t\t\t\t\t\t  3. STAR REVIEW";
-	cout << "\n\t  |\t\t\t\t\t\t\t  4. EXIT" << endl << "\n";
+	cout << "\n\t  |\t\t\t\t\t\t\t  4. CAR HISTORY";
+	cout << "\n\t  |\t\t\t\t\t\t\t  5. EXIT" << endl << "\n";
 	cout << "\n\t  |\t\t\t\t\t\t\tINPUT :";
 	cin >> x;
 
@@ -1140,9 +1142,40 @@ void userMenu(int userID)
 	if (x == 3) {
 		star(userID);
 	}
-	if (x == 4) {
+	if (x==4){
+		history(userID);
+	}
+	if (x == 5) {
 		menu();
 	}
+}
+
+void history(int userID) {
+	ifstream ifs;
+	ifs.open("Log.txt");
+	art();
+	cout << endl;
+	cout << "\t  |  ID\t\tName\tPhone\t\tIC\tPlate Number\tBrand\tModel\tHours Rented\tHourly Rate\tDate" << endl;
+	cout << "\t  |  =======================================================================================================================" << endl;
+	while (!ifs.eof()) {
+		char id[10],name[100],phone[15],IC[15],plate[10],brand[20],model[20],hours[10],rate[10],date[30];
+		
+		ifs.getline(id,10,';');
+		ifs.getline(name, 100, ';');
+		ifs.getline(phone, 15, ';');
+		ifs.getline(IC, 15, ';');
+		ifs.getline(plate, 10, ';');
+		ifs.getline(brand, 20, ';');
+		ifs.getline(model, 20, ';');
+		ifs.getline(hours, 10, ';');
+		ifs.getline(rate, 10, ';');
+		ifs.getline(date, 30, ';');
+		if (atoi(id) == userID) {
+			cout << "\t  |   " << id << "\t" << name << "\t" << phone << "\t\t" << IC << "\t  " << plate << "\t" << brand << "\t" << model << "\t    " << hours << "\t\t   " << rate << "\t  " << date << endl;
+		}
+	}
+	ifs.close();
+	_getch();
 }
 
 void menu()
