@@ -1329,6 +1329,7 @@ void history(int userID) {
 	}
 	ifs.close();
 	_getch();
+	userMenu(userID);
 }
 
 void menu()
@@ -1364,11 +1365,15 @@ void menu()
 
 		tNc();
 		_getch();
+		menu();
 	}
 
 	if (x == 4)
 	{
+		art();
 		dispAvailCar();
+		_getch();
+		menu();
 	}
 
 	if (x == 6)
