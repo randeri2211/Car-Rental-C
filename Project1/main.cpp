@@ -55,7 +55,7 @@ void userMenu(int userID);
 void rentCar(int userID);
 void star(int userID);
 void history(int userID);
-void editCarAdmin();
+void Discounts(int userID);
 
 struct car
 {
@@ -433,9 +433,12 @@ void exitArt()
 
 int rate(int hour, int j)
 {
+	
 	int hour_24, hour_12, hour_1;
 	int total, total_24, total_12, total_1;
 
+
+	
 	hour_24 = hour / 24;
 	hour_12 = (hour - hour_24 * 24) / 12;
 	hour_1 = (hour - hour_24 * 24 - hour_12 * 12) / 1;
@@ -444,7 +447,18 @@ int rate(int hour, int j)
 	total_12 = hour_12 * rent[j].rate_per_half;
 	total_1 = hour_1 * rent[j].rate_per_hour;
 
+
 	total = total_24 + total_12 + total_1;
+
+	if (hour == 12)
+	{
+		total = total * 0.9;
+	}
+
+	if (hour == 24)
+	{
+		total = total * 0.8;
+	}
 	return total;
 }
 
@@ -612,6 +626,7 @@ void rentCar(int userID)
 
 	dispAvailCar();
 
+	
 	cout << "\n\n\t  |\t\t\t\t\tPlease select car";
 	cout << "\n\t  |\t\t\t\t\tPlate Number : ";
 	cin >> ws;
@@ -687,153 +702,6 @@ void rentCar(int userID)
 	Sleep(5000);
 	system("cls");
 	userMenu(userID);
-}
-
-void editCarAdmin() {
-	char carSelect[10];
-	ofstream ofs;
-	ofs.open("temp.txt");
-	cout << "\n\n\n\n";
-	cout << endl;
-
-	cout << "\n\n";
-	art();
-	cout << endl;
-
-	cout << "\t  |  Plate Number\tBrand\t Model\tCapacity    Colour   Rate Per Hour   Rate Per 12 Hour   Rate Per 24 Hour   Transmission   " << endl;
-	cout << "\t  |  ===================================================================================================================================" << endl;
-	for (int i = 0; i < carCount(); i++)
-	{
-		cout << "\t  |  " << rent[i].plate_num << "\t\t" << rent[i].brand << "\t " << rent[i].model << "\t   " << rent[i].capacity << "\t     "
-			<< rent[i].colour << "\t  " << rent[i].rate_per_hour << "\t\t    " << rent[i].rate_per_half << "\t\t    " << rent[i].rate_per_day
-			<< "\t\t       " << rent[i].transmission << endl;
-	}
-
-	cout << "\n\n\t  |\t\t\t\t\tPlease select car";
-	cout << "\n\t  |\t\t\t\t\tPlate Number : ";
-	cin >> ws;
-	cin.getline(carSelect, 10);
-
-	system("cls");
-
-	art();
-	int index;
-	cout << "\n\n\t  |\t\t\t\t\tSelect a field to edit:";
-	cout << "\n\t  |\t\t\t\t\t\t\t  1. Plate number";
-	cout << "\n\t  |\t\t\t\t\t\t\t  2. Brand";
-	cout << "\n\t  |\t\t\t\t\t\t\t  3. Model";
-	cout << "\n\t  |\t\t\t\t\t\t\t  4. Capacity ";
-	cout << "\n\t  |\t\t\t\t\t\t\t  5. Color";
-	cout << "\n\t  |\t\t\t\t\t\t\t  6. Rate Per Hour";
-	cout << "\n\t  |\t\t\t\t\t\t\t  7. Rate Per 12 Hours";
-	cout << "\n\t  |\t\t\t\t\t\t\t  8. Rate for Day ";
-	cout << "\n\t  |\t\t\t\t\t\t\t  9. Transmission";
-	cout << "\n\t  |\t\t\t\t\t\t\tINPUT :";
-	cin >> index;
-	system("cls");
-
-	art();
-
-	cout << "\t  |  Plate Number\tBrand\t Model\tCapacity    Colour   Rate Per Hour   Rate Per 12 Hour   Rate Per 24 Hour   Transmission   " << endl;
-	cout << "\t  |  ===================================================================================================================================" << endl;
-	for (int i = 0; i < carCount(); i++)
-	{
-		cout << "\t  |  " << rent[i].plate_num << "\t\t" << rent[i].brand << "\t " << rent[i].model << "\t   " << rent[i].capacity << "\t     "
-			<< rent[i].colour << "\t  " << rent[i].rate_per_hour << "\t\t    " << rent[i].rate_per_half << "\t\t    " << rent[i].rate_per_day
-			<< "\t\t       " << rent[i].transmission << endl;
-	}
-
-	cout << "\n\n\t  |\t\t\t\t\tEnter new info to edit:";
-
-	for (int i = 0; i < carCount(); i++)
-	{
-		if (strcmp(carSelect, rent[i].plate_num) != 0)
-		{
-			ofs << rent[i].plate_num;
-			ofs << " ";
-			ofs << rent[i].brand;
-			ofs << " ";
-			ofs << rent[i].model;
-			ofs << " ";
-			ofs << rent[i].capacity;
-			ofs << " ";
-			ofs << rent[i].colour;
-			ofs << " ";
-			ofs << rent[i].rate_per_hour;
-			ofs << " ";
-			ofs << rent[i].rate_per_half;
-			ofs << " ";
-			ofs << rent[i].rate_per_day;
-			ofs << " ";
-			ofs << rent[i].transmission;
-			if (i != carCount())
-			{
-				ofs << endl;
-			}
-		}
-		if (strcmp(carSelect, rent[i].plate_num) == 0) {
-			switch (index) {
-			case 1:
-				cin >> rent[i].plate_num;
-				break;
-			case 2:
-				cin >> rent[i].brand;
-				break;
-			case 3:
-				cin >> rent[i].model;
-				break;
-			case 4:
-				cin >> rent[i].capacity;
-				break;
-			case 5:
-				cin >> rent[i].colour;
-				break;
-			case 6:
-				cin >> rent[i].rate_per_hour;
-				break;
-			case 7:
-				cin >> rent[i].rate_per_half;
-				break;
-			case 8:
-				cin >> rent[i].rate_per_day;
-				break;
-			case 9:
-				cin >> rent[i].transmission;
-				break;
-			}
-			ofs << rent[i].plate_num;
-			ofs << " ";
-			ofs << rent[i].brand;
-			ofs << " ";
-			ofs << rent[i].model;
-			ofs << " ";
-			ofs << rent[i].capacity;
-			ofs << " ";
-			ofs << rent[i].colour;
-			ofs << " ";
-			ofs << rent[i].rate_per_hour;
-			ofs << " ";
-			ofs << rent[i].rate_per_half;
-			ofs << " ";
-			ofs << rent[i].rate_per_day;
-			ofs << " ";
-			ofs << rent[i].transmission;
-			if (i != carCount())
-			{
-				ofs << endl;
-			}
-		}
-	}
-
-	ofs.close();
-
-	remove("car rental.txt");
-	rename("temp.txt", "car rental.txt");
-	carData();
-
-
-	Sleep(5000);
-	system("cls");
 }
 
 void newCustData()
@@ -1175,22 +1043,17 @@ void admin()
 	cout << "\n\t  |\t\t\t\t\t\t\t  3. ADD CAR";
 	cout << "\n\t  |\t\t\t\t\t\t\t  4. DELETE CAR";
 	cout << "\n\t  |\t\t\t\t\t\t\t  5. RESET AVAILABLE CAR";
-	cout << "\n\t  |\t\t\t\t\t\t\t  6. EDIT CAR DATA";
-	cout << "\n\t  |\t\t\t\t\t\t\t  7. LOG OFF" << endl << "\n";
+	cout << "\n\t  |\t\t\t\t\t\t\t  6. LOG OFF" << endl << "\n";
 	cout << "\t  |\t\t\t\t\t\t\tINPUT :";
 	cin >> x;
 
 
 	system("cls");
 
-	if (x == 7)
+	if (x == 6)
 	{
 		load_EXIT();
 		menu();
-	}
-
-	else if (x == 6) {
-		editCarAdmin();
 	}
 
 	else if (x == 2)
@@ -1254,6 +1117,20 @@ void user()
 
 }
 
+void Discounts(int userID)
+{
+	art();
+
+	cout<< "\n\t | \t\t\t\t\t\t\t The Discounts is:\n‬ ";
+	cout << "\n\n\t  |\t\t\t\t\tIf you rent car for 12 hours get 10% discount";
+	cout << "\n\n\t  |\t\t\t\t\tIf you rent car for 24 hours get 20% discount";
+	cout << "\n\n\n\n\t  |\t\t\t                             PRESS ANY KEY TO CONTINUE :)";
+	cout << "\n\t  |\t\t\t                                                            ";
+
+	_getch();
+	userMenu(userID);
+}
+
 void userMenu(int userID)
 {
 	int x;
@@ -1277,7 +1154,8 @@ void userMenu(int userID)
 	cout << "\n\t  |\t\t\t\t\t\t\t  2. ADD CAR";
 	cout << "\n\t  |\t\t\t\t\t\t\t  3. STAR REVIEW";
 	cout << "\n\t  |\t\t\t\t\t\t\t  4. CAR HISTORY";
-	cout << "\n\t  |\t\t\t\t\t\t\t  5. EXIT" << endl << "\n";
+	cout << "\n\t  |\t\t\t\t\t\t\t  5. DISCOUNTS";
+	cout << "\n\t  |\t\t\t\t\t\t\t  6. EXIT" << endl << "\n";
 	cout << "\n\t  |\t\t\t\t\t\t\tINPUT :";
 	cin >> x;
 
@@ -1296,9 +1174,11 @@ void userMenu(int userID)
 	}
 	if (x==4){
 		history(userID);
-		menu();
 	}
 	if (x == 5) {
+		Discounts(userID);
+	}
+	if (x == 6) {
 		menu();
 	}
 }
@@ -1343,6 +1223,7 @@ void menu()
 	cout << "\n\t  |\t\t\t\t\t\t\t  2. USER";
 	cout << "\n\t  |\t\t\t\t\t\t\t  3. T%C";
 	cout << "\n\t  |\t\t\t\t\t\t\t  4. VIEW LIST CAR ";
+
 	cout << "\n\t  |\t\t\t\t\t\t\t  5. EXIT" << endl << "\n";
 	cout << "\n\t  |\t\t\t\t\t\t\tINPUT :";
 	cin >> x;
