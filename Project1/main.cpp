@@ -56,6 +56,7 @@ void rentCar(int userID);
 void star(int userID);
 void history(int userID);
 void Discounts(int userID);
+void editCarAdmin();
 
 struct car
 {
@@ -461,6 +462,8 @@ int rate(int hour, int j)
 	}
 	return total;
 }
+
+
 
 void customerData()
 {
@@ -1043,17 +1046,22 @@ void admin()
 	cout << "\n\t  |\t\t\t\t\t\t\t  3. ADD CAR";
 	cout << "\n\t  |\t\t\t\t\t\t\t  4. DELETE CAR";
 	cout << "\n\t  |\t\t\t\t\t\t\t  5. RESET AVAILABLE CAR";
-	cout << "\n\t  |\t\t\t\t\t\t\t  6. LOG OFF" << endl << "\n";
+	cout << "\n\t  |\t\t\t\t\t\t\t  6. EDIT CAR DATA";
+	cout << "\n\t  |\t\t\t\t\t\t\t  7. LOG OFF" << endl << "\n";
 	cout << "\t  |\t\t\t\t\t\t\tINPUT :";
 	cin >> x;
 
 
 	system("cls");
 
-	if (x == 6)
+	if (x == 7)
 	{
 		load_EXIT();
 		menu();
+	}
+
+	else if (x == 6) {
+		editCarAdmin();
 	}
 
 	else if (x == 2)
