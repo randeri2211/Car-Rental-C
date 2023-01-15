@@ -1619,9 +1619,7 @@ void star(int userID) {
 			ofs << " ";
 			ofs << rent[i].capacity;
 			ofs << " ";
-			ofs << rent[i].colour;<<<<<<< Shirsab-patch-1
-1527
- 
+			ofs << rent[i].colour;
 
 			ofs << " ";
 			ofs << rent[i].rate_per_hour;
@@ -1639,17 +1637,12 @@ void star(int userID) {
 			rent[i].star = newStar;
 			ofs << rent[i].star;
 			if (i != countAvail())
-			{<<<<<<< Shirsab-patch-1
-1527
- 
-
+			{
 				ofs << endl;
 			}
 		}
 		else {
-			foundCar = true;<<<<<<< Shirsab-patch-1
-1527
- 
+			foundCar = true;
 
 		}
 	}
@@ -1666,20 +1659,13 @@ void star(int userID) {
 	
 	system("cls");
 	userMenu(userID);
-}<<<<<<< Shirsab-patch-1
-1527
- 
+}
 
 
 int main()
 {
 
-	fullscreen();<<<<<<< Shirsab-patch-1
-1527
- <<<<<<< Shirsab-patch-1
-1527
- 
-
+	fullscreen();
 
 	welcome();
 	load();
