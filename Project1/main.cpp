@@ -57,6 +57,7 @@ void star(int userID);
 void history(int userID);
 void Discounts(int userID);
 void editCarAdmin();
+void qa();
 
 struct car
 {
@@ -356,7 +357,6 @@ void password()
 			admin();
 		}
 	}
-
 
 	if (password == "a")
 	{
@@ -1523,8 +1523,9 @@ void menu()
 	cout << "\n\t  |\t\t\t\t\t\t\t  2. USER";
 	cout << "\n\t  |\t\t\t\t\t\t\t  3. T%C";
 	cout << "\n\t  |\t\t\t\t\t\t\t  4. VIEW LIST CAR ";
+	cout << "\n\t  |\t\t\t\t\t\t\t  5. Q & A ";
+	cout << "\n\t  |\t\t\t\t\t\t\t  6. EXIT" << endl << "\n";
 
-	cout << "\n\t  |\t\t\t\t\t\t\t  5. EXIT" << endl << "\n";
 	cout << "\n\t  |\t\t\t\t\t\t\tINPUT :";
 	cin >> x;
 
@@ -1557,10 +1558,12 @@ void menu()
 		menu();
 	}
 
-	if (x == 6)
+	if (x == 7)
 		time();
 
-	else if (x == 5)
+	if (x == 5)
+		qa();
+	else if (x == 6)
 	{
 		cout << "\n\n\n\n";
 		exitArt();
@@ -1568,7 +1571,7 @@ void menu()
 		exit(0);
 	}
 
-	else if (x == 6)
+	else if (x == 7)
 	{
 		fullscreen();
 		menu();
@@ -1580,6 +1583,47 @@ void menu()
 
 }
 
+void qa()
+{
+	art();
+	int number;
+
+	cout << "\n\t  |\t\t\t\t\t\t\tplease enter number question to know answer\n";
+	cout << "\n\t  |\t\t\t\t\t\t\t1. What is required to bring when renting the car? \n";
+	cout << "\n\t  |\t\t\t\t\t\t\t2. If you finish earlier than planned, do you pay less? \n";
+	cout << "\n\t  |\t\t\t\t\t\t\t3. Can I order a rental car from a specific manufacturer or model? \n";
+	cout << "\n\t  |\t\t\t\t\t\t\t4. If I receive a toll report, who pays it? \n";
+	cout << "\n\t  |\t\t\t\t\t\t\t5.Does the vehicle pass a health check before renting?\n";
+	cout << "\n\t  |\t\t\t\t\t\t\t6. Exit to Menu\n";
+
+
+	cout << "\n\t  |\t\t\t\t\t\t\t"; cin >> number;
+	while (number!=7)
+	{
+		if (number == 1)
+			cout << "\n\t  |\t\t\t\t\t\t\tThe car renter must physically present his driver's license\n \n\t  |\t\t\t\t\t\t\twhen picking up the car.\n \n\t  |\t\t\t\t\t\t\tThe driver's license must be valid for at least the entire rental period.\n";
+		if (number == 2)
+
+			cout << "\n\t  |\t\t\t\t\t\t\tIt is possible to return the vehicle earlier than planned.\n \n\t  |\t\t\t\t\t\t\tThe final price will be updated accordingly \n";
+
+		if (number == 3)
+			cout << "\n\t  |\t\t\t\t\t\t\tYes, according to the table shown \n";
+
+		if (number == 4)
+			cout << " \n\t  |\t\t\t\t\t\t\tWhoever has the vehicle in his name at the time of rental\n";
+
+		if (number == 5)
+			cout << "\n\t  |\t\t\t\t\t\t\tYes, the vehicle undergoes a comprehensive inspection \n";
+
+		if (number == 6)
+		{
+			menu();
+		}
+			
+		cout << "\n\t  |\t\t\t\t\t\t\t"; cin >> number;
+
+	}
+}
 void delCar()
 {
 	char plate[10];
@@ -1721,7 +1765,10 @@ void star(int userID) {
 			ofs << " ";
 			ofs << rent[i].capacity;
 			ofs << " ";
-			ofs << rent[i].colour;
+			ofs << rent[i].colour;<<<<<<< Shirsab-patch-1
+1527
+ 
+
 			ofs << " ";
 			ofs << rent[i].rate_per_hour;
 			ofs << " ";
@@ -1738,12 +1785,18 @@ void star(int userID) {
 			rent[i].star = newStar;
 			ofs << rent[i].star;
 			if (i != countAvail())
-			{
+			{<<<<<<< Shirsab-patch-1
+1527
+ 
+
 				ofs << endl;
 			}
 		}
 		else {
-			foundCar = true;
+			foundCar = true;<<<<<<< Shirsab-patch-1
+1527
+ 
+
 		}
 	}
 	if (!foundCar) {
@@ -1759,12 +1812,21 @@ void star(int userID) {
 	
 	system("cls");
 	userMenu(userID);
-}
+}<<<<<<< Shirsab-patch-1
+1527
+ 
+
 
 int main()
 {
 
-	fullscreen();
+	fullscreen();<<<<<<< Shirsab-patch-1
+1527
+ <<<<<<< Shirsab-patch-1
+1527
+ 
+
+
 	welcome();
 	load();
 	Boarder();
